@@ -1,12 +1,9 @@
 <script>
   import axios from "axios";
-  // import dotenv from "dotenv";
-  // dotenv.config();
   export default {
     data() {
       return {
         VUE_APP_BASE_URL: process.env.API_url,
-
         satellites: [],
         filteredSatellites: [],
         displayedSatellites: [],
@@ -23,13 +20,7 @@
       };
     },
     mounted() {
-      console.log("mounted", this.VUE_APP_BASE_URL), this.getdata();
-
-      // setTimeout(() => {
-      //   this.filteredSatellites = [...this.satellites];
-      //   this.loading = false;
-      //   this.applyFilters();
-      // }, 1000);
+      this.getdata();
     },
     computed: {
       totalPages() {
@@ -57,10 +48,16 @@
         this.expandedIndex = this.expandedIndex === index ? null : index;
       },
 
+      // The above code is a method called `applyFilters()` in a Vue component. It is responsible for
+      // applying filters and a search query to a list of satellites and updating the displayed
+      // satellites accordingly.
       applyFilters() {
         let result = [...this.satellites];
 
-        // Apply filters
+     // The above code is filtering a list of satellites based on a country code. It checks if the
+     // `filters.countryCode` property is truthy, and if so, it filters the `result` array of
+     // satellites. The filter function checks if the `satellite` object has a `countryCode` property
+     // and if that property includes the `filters.countryCode` value, either in lowercase or as is.
         if (this.filters.countryCode) {
           result = result.filter(
             (satellite) =>
@@ -72,6 +69,9 @@
                 satellite.countryCode.includes(this.filters.countryCode))
           );
         }
+    // The above code is checking if the `orbitCode` property exists in the `filters` object. If it
+    // does, it filters the `result` array of satellites based on the condition that the `orbitCode` of
+    // each satellite matches the `orbitCode` specified in the `filters` object.
         if (this.filters.orbitCode) {
           result = result.filter(
             (satellite) => satellite.orbitCode === this.filters.orbitCode
@@ -83,7 +83,10 @@
           );
         }
 
-        // Apply search query
+        
+        // The above code is filtering an array of satellite objects based on a search query. It checks
+        // if the search query matches the lowercase version of the satellite's noradCatId or name, and
+        // if it does, the satellite object is included in the filtered result array.
         if (this.searchQuery) {
           const query = this.searchQuery.toLowerCase();
           result = result.filter(
@@ -98,6 +101,11 @@
         this.currentPage = 1;
         this.updateDisplayedSatellites();
       },
+// The above code is a method in a Vue component that updates the list of displayed satellites based on
+// the current page and the number of satellites per page. It calculates the start index and end index
+// of the satellites to be displayed based on the current page and the number of satellites per page.
+// Then, it slices the filteredSatellites array using the start and end index and assigns the sliced
+// array to the displayedSatellites property.
       updateDisplayedSatellites() {
         const startIndex = (this.currentPage - 1) * this.satellitesPerPage;
         const endIndex = startIndex + this.satellitesPerPage;
@@ -106,6 +114,7 @@
           endIndex
         );
       },
+     // The above code is defining two methods, `previousPage()` and `nextPage()`, in a Vue component.
       previousPage() {
         this.currentPage -= 1;
         this.updateDisplayedSatellites();
@@ -114,16 +123,19 @@
         this.currentPage += 1;
         this.updateDisplayedSatellites();
       },
+// The above code is a method in a Vue component that is used to reset all filters and search query. It
+// sets the values of the filters (countryCode, orbitCode, objectType) and searchQuery to empty
+// strings. It then resets the filteredSatellites array to the original array of satellites. Finally,
+// it calls the updateDisplayedSatellites method to update the displayed satellites based on the reset
+// filters.
       resetFilters() {
         // Reset all filters and search query
         this.filters.countryCode = "";
         this.filters.orbitCode = "";
         this.filters.objectType = "";
         this.searchQuery = "";
-
         // Reset filteredSatellites to the original array
         this.filteredSatellites = [...this.satellites];
-
         // Update the displayed satellites based on the reset filters
         this.updateDisplayedSatellites();
       },
@@ -133,12 +145,10 @@
 <template>
   <div class="mainDiv">
     <div v-if="loading">Loading...</div>
-
     <div class="parrent" v-else>
       <div class="searchFilter">
         <div class="search">
           <input v-model="searchQuery" @input="applyFilters" />
-          <!-- <button>&#128269</button> -->
           <button><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <div class="filter">
@@ -253,18 +263,8 @@
               <option value="KWT">KWT</option>
               <option value="RWA">RWA</option>
             </select>
-            <!-- <input
-              placeholder="Country Code"
-              v-model="filters.countryCode"
-              @input="applyFilters"
-            /> -->
           </div>
           <div>
-            <!-- <input
-              placeholder="Orbit Regime"
-              v-model="filters.orbitCode"
-              @input="applyFilters"
-            /> -->
             <select
               v-model="filters.orbitCode"
               @change="applyFilters"
@@ -280,11 +280,6 @@
             </select>
           </div>
           <div>
-            <!-- <input
-              placeholder="Object Type"
-             
-            /> -->
-
             <select
               v-model="filters.objectType"
               @change="applyFilters"
@@ -314,7 +309,6 @@
         >
           <div @click="toggleAccordion(index)" class="accordion-header">
             <div class="head">
-              <!-- <div class="sIndex">{{ index + 1 + "." }} </div> -->
               <div class="sName">
                 <p><strong>Name :</strong> {{ satellite.name || "N/A" }}</p>
               </div>
@@ -516,7 +510,6 @@
   }
   .filter button {
     height: 100%;
-    /* width: 1em; */
     border: 0.5px solid;
     border-radius: 10px;
     background-color: transparent;
@@ -548,7 +541,6 @@
       padding: 10px;
       font-size: 0.7em;
     }
-
     .filter {
       flex-direction: column;
     }
@@ -563,7 +555,6 @@
     .satDetail .satText div {
       flex-direction: column;
     }
-
     .satDetail img {
       height: 100px;
       width: 150px;
