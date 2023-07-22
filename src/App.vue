@@ -147,8 +147,8 @@ export default {
     <div class="parrent" v-else>
       <div class="searchFilter">
         <div class="search">
-          <input v-model="searchQuery" @input="applyFilters" />
-          <button><i class="fa-solid fa-magnifying-glass"></i></button>
+          <input v-model="searchQuery"  />
+          <button @click="applyFilters"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <div class="filter">
           <div>
