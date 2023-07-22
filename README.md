@@ -1,8 +1,61 @@
-# Vue 3 + Vite
+# Digantara_satellite_app
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is a Vue.js app built using Vite that fetches satellite data from an external API and allows you to filter and search through the data.
 
-While this project uses Vue.js, Vite supports many popular JS frameworks. [See all the supported frameworks](https://vitejs.dev/guide/#scaffolding-your-first-vite-project).
+
+## Features
+
+- Fetches satellite data from an external API.
+- Filters the data based on country code, orbit code, and object type.
+- Allows searching for specific satellites by name or NORAD Catalog ID.
+- Paginates the results to display a limited number of satellites per page.
+
+## Usage
+
+- The app will load the satellite data when the page is mounted. If the data retrieval is successful, the list of satellites will be displayed, and you can interact with the filters and search bar to refine the results.
+- Use the filters to narrow down the displayed satellites based on country code, orbit code, and object type.
+- Enter a search query in the search bar to filter the satellites by name or NORAD Catalog ID.
+- The paginated results will show 10 satellites per page by default. Use the pagination buttons to navigate through the pages.
+
+
+## Getting Started
+
+### Prerequisites
+
+Before running the app, make sure you have Node.js and npm (Node Package Manager) installed on your system.
+
+### Installation
+
+1. Clone this repository to your local machine:
+
+```shell
+$ git clone https://github.com/CodEsHiVaz/Digantra_satellite_app.git
+```
+
+2. Install the dependencies using npm:
+```shell
+$ npm install 
+```
+
+### Running the App
+
+To start the development server and run the app locally, use the following command:
+```shell
+$ npm run dev
+```
+
+The app will be accessible at `http://localhost:5173` in your web browser.
+
+### Build for Production
+
+To build the app for production, use the following command:
+
+```shell
+$ npm run build
+```
+The production-ready files will be generated in the `dist` directory.
+
+
 
 ## Deploy Your Own
 
