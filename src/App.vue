@@ -54,10 +54,10 @@
       applyFilters() {
         let result = [...this.satellites];
 
-     // The above code is filtering a list of satellites based on a country code. It checks if the
-     // `filters.countryCode` property is truthy, and if so, it filters the `result` array of
-     // satellites. The filter function checks if the `satellite` object has a `countryCode` property
-     // and if that property includes the `filters.countryCode` value, either in lowercase or as is.
+        // The above code is filtering a list of satellites based on a country code. It checks if the
+        // `filters.countryCode` property is truthy, and if so, it filters the `result` array of
+        // satellites. The filter function checks if the `satellite` object has a `countryCode` property
+        // and if that property includes the `filters.countryCode` value, either in lowercase or as is.
         if (this.filters.countryCode) {
           result = result.filter(
             (satellite) =>
@@ -69,9 +69,9 @@
                 satellite.countryCode.includes(this.filters.countryCode))
           );
         }
-    // The above code is checking if the `orbitCode` property exists in the `filters` object. If it
-    // does, it filters the `result` array of satellites based on the condition that the `orbitCode` of
-    // each satellite matches the `orbitCode` specified in the `filters` object.
+        // The above code is checking if the `orbitCode` property exists in the `filters` object. If it
+        // does, it filters the `result` array of satellites based on the condition that the `orbitCode` of
+        // each satellite matches the `orbitCode` specified in the `filters` object.
         if (this.filters.orbitCode) {
           result = result.filter(
             (satellite) => satellite.orbitCode === this.filters.orbitCode
@@ -83,7 +83,6 @@
           );
         }
 
-        
         // The above code is filtering an array of satellite objects based on a search query. It checks
         // if the search query matches the lowercase version of the satellite's noradCatId or name, and
         // if it does, the satellite object is included in the filtered result array.
@@ -101,11 +100,11 @@
         this.currentPage = 1;
         this.updateDisplayedSatellites();
       },
-// The above code is a method in a Vue component that updates the list of displayed satellites based on
-// the current page and the number of satellites per page. It calculates the start index and end index
-// of the satellites to be displayed based on the current page and the number of satellites per page.
-// Then, it slices the filteredSatellites array using the start and end index and assigns the sliced
-// array to the displayedSatellites property.
+      // The above code is a method in a Vue component that updates the list of displayed satellites based on
+      // the current page and the number of satellites per page. It calculates the start index and end index
+      // of the satellites to be displayed based on the current page and the number of satellites per page.
+      // Then, it slices the filteredSatellites array using the start and end index and assigns the sliced
+      // array to the displayedSatellites property.
       updateDisplayedSatellites() {
         const startIndex = (this.currentPage - 1) * this.satellitesPerPage;
         const endIndex = startIndex + this.satellitesPerPage;
@@ -114,7 +113,7 @@
           endIndex
         );
       },
-     // The above code is defining two methods, `previousPage()` and `nextPage()`, in a Vue component.
+      // The above code is defining two methods, `previousPage()` and `nextPage()`, in a Vue component.
       previousPage() {
         this.currentPage -= 1;
         this.updateDisplayedSatellites();
@@ -123,11 +122,11 @@
         this.currentPage += 1;
         this.updateDisplayedSatellites();
       },
-// The above code is a method in a Vue component that is used to reset all filters and search query. It
-// sets the values of the filters (countryCode, orbitCode, objectType) and searchQuery to empty
-// strings. It then resets the filteredSatellites array to the original array of satellites. Finally,
-// it calls the updateDisplayedSatellites method to update the displayed satellites based on the reset
-// filters.
+      // The above code is a method in a Vue component that is used to reset all filters and search query. It
+      // sets the values of the filters (countryCode, orbitCode, objectType) and searchQuery to empty
+      // strings. It then resets the filteredSatellites array to the original array of satellites. Finally,
+      // it calls the updateDisplayedSatellites method to update the displayed satellites based on the reset
+      // filters.
       resetFilters() {
         // Reset all filters and search query
         this.filters.countryCode = "";

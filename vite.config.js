@@ -1,12 +1,11 @@
-import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-
-// https://vitejs.dev/config/
-export default defineConfig({
-  define: {
-    "process.env": {
-      API_url: "https://smoggy-sweater-deer.cyclic.app/satellites",
+import { defineConfig, loadEnv } from "vite";
+export default defineConfig(({ command, mode }) => {
+  const env = loadEnv(mode, process.cwd(), "");
+  return {
+    define: {
+      "process.env.API_url": JSON.stringify(env.API_url),
     },
-  },
-  plugins: [vue()],
+    plugins: [vue()],
+  };
 });
